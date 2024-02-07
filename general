@@ -1,6 +1,37 @@
-Klient: (start Vajab vedu)
-user Esitab veotellimuse TMSis
-Logistik: script Saab töö
-user Kompletkeerib veotellimuse
-user Kinnitab veotellimuse
-DigiCMR: script Loob eCMRi
+Consignor: (start Need for transport)
+Enter order into TMS
+(send Order)
+
+Forwarder:
+(receive Order)
+script Make order into task
+user Complect tasks into an order
+user Confirm order
+script Generate eCMR
+(send eCMR)
+
+Consignor:
+(receive eCMR)
+user Confirm eCMR ready for pickup
+(send eCMR ready for pickup)
+
+Carrier:
+(receive eCMR ready for pickup)
+user Confirm eCMR in transit
+user Confirm eCMR delivery completed
+More carriers?
+Yes
+(send eCMR ready for next pickup)
+(receive eCMR ready for next pickup)
+user Confirm eCMR in transit
+...
+More carriers?
+No
+(send eCMR delivered)
+
+
+Consignee:
+(receive eCMR delivered)
+user Confirm delivery recieved
+(finish eCMR completed)
+
